@@ -17,6 +17,7 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "@vue/cli-plugin-router": "^4.5.7",
     "nodemon": "^2.0.4"
   }
 }
