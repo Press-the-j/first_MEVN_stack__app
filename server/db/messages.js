@@ -5,6 +5,7 @@ const Joi = require('joi');
 const db = require('./connection');
 
 
+//; per validare lo schema chiamare schema.validate(element)
 const schema = Joi.object().keys({
   username: Joi.string().alphanum().required(),
   subject: Joi.string().required(),
@@ -18,13 +19,15 @@ const schema = Joi.object().keys({
 
 const messages = db.get('messages');
 
+
 function getAll(){
  return messages.find()
 }
 
+
 function create(message) {
   if(!message.username) message.username = 'Anonymous';
-  const result = Joi.validate(message, schema);
+  const result = schema.validate(message)
   if ( result.error == null){
     message.created= new Date()
     return messages.insert(message)
